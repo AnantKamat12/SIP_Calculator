@@ -1,3 +1,4 @@
+import math
 class Interest():
     def __init__(self):
         pass

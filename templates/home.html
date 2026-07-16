@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Main layout grid container -->
+<div class="row">
+
+    <!-- ─── LEFT COLUMN: SIMPLE INTEREST ─── -->
+    <div class="col-md-6 mb-4">
+        <!-- Input Card -->
+        <div class="card shadow-sm p-4 mb-4 border-warning">
+            <h2 class="text-center mb-4">Simple Interest</h2>
+
+            <form action="/home" method="POST">
+                <!-- Secret tracker field -->
+                <input type="hidden" name="calc_type" value="simple">
+
+                <div class="mb-3">
+                    <label class="form-label">Principal Amount (₹)</label>
+                    <input type="number" name="principal" class="form-control" required value="10000">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Annual Interest Rate (%)</label>
+                    <input type="number" step="0.1" name="rate" class="form-control" required value="10">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Time Period (Years)</label>
+                    <input type="number" step="0.5" name="years" class="form-control" required value="2">
+                </div>
+                <button type="submit" class="btn btn-warning w-100 text-dark fw-bold">Calculate Simple Interest</button>
+            </form>
+        </div>
+
+        <!-- Simple Interest Specific Results -->
+        {% if si_results %}
+        <div class="card shadow-sm p-4 border-success">
+            <h4 class="text-center text-success mb-3">Simple Interest Summary</h4>
+            <div class="row text-center">
+                <div class="col-6 mb-2">
+                    <div class="text-muted small">Principal</div>
+                    <div class="fw-bold text-dark">₹{{ si_results.principal }}</div>
+                </div>
+                <div class="col-6 mb-2">
+                    <div class="text-muted small">Interest Earned</div>
+                    <div class="fw-bold text-success">+ ₹{{ si_results.interest }}</div>
+                </div>
+                <div class="col-12 mt-2 pt-2 border-top">
+                    <div class="text-muted small">Total Value</div>
+                    <div class="fs-4 fw-bold text-success">₹{{ si_results.total }}</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div> <!-- Closes Simple Interest Column cleanly -->
+
+    <!-- ─── RIGHT COLUMN: COMPOUND INTEREST ─── -->
+    <div class="col-md-6 mb-4">
+        <!-- Input Card -->
+        <div class="card shadow-sm p-4 mb-4 border-info">
+            <h2 class="text-center mb-4">Compound Interest</h2>
+
+            <form action="/home" method="POST">
+                <!-- Secret tracker field -->
+                <input type="hidden" name="calc_type" value="compound">
+
+                <div class="mb-3">
+                    <label class="form-label">Principal Amount (₹)</label>
+                    <input type="number" name="principal" class="form-control" required value="10000">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Annual Interest Rate (%)</label>
+                    <input type="number" step="0.1" name="rate" class="form-control" required value="10">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Time Period (Years)</label>
+                    <input type="number" step="0.5" name="years" class="form-control" required value="2">
+                </div>
+                <button type="submit" class="btn btn-info w-100 text-dark fw-bold">Calculate Compound Interest</button>
+            </form>
+        </div>
+
+        <!-- Compound Interest Specific Results -->
+        {% if ci_results %}
+        <div class="card shadow-sm p-4 border-primary">
+            <h4 class="text-center text-primary mb-3">Compound Interest Summary</h4>
+            <div class="row text-center">
+                <div class="col-6 mb-2">
+                    <div class="text-muted small">Principal</div>
+                    <div class="fw-bold text-dark">₹{{ ci_results.principal }}</div>
+                </div>
+                <div class="col-6 mb-2">
+                    <div class="text-muted small">Interest Earned</div>
+                    <div class="fw-bold text-primary">+ ₹{{ ci_results.interest }}</div>
+                </div>
+                <div class="col-12 mt-2 pt-2 border-top">
+                    <div class="text-muted small">Total Value</div>
+                    <div class="fs-4 fw-bold text-primary">₹{{ ci_results.total }}</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div> <!-- Closes Compound Interest Column cleanly -->
+
+</div> <!-- Closes out the main grid row -->
+{% endblock %}
