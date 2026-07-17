@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 mb-4">
+            <h2 class="text-center mb-4">Basic Calculator</h2>
+
+            <form action="/calc" method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Enter Number 1</label>
+                    <input type="number" step="any" name="num1" class="form-control" required
+                        placeholder="Enter first number">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Operation</label>
+                    <select name="sign" class="form-select">
+                        <option value="+">Addition (+)</option>
+                        <option value="-">Subtraction (-)</option>
+                        <option value="*">Multiplication (*)</option>
+                        <option value="/">Division (/)</option>
+                        <option value="**">Power (**)</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Enter Number 2</label>
+                    <input type="number" step="any" name="num2" class="form-control" required
+                        placeholder="Enter second number">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Calculate
+                </button>
+
+            </form>
+        </div>
+
+        {% if results is not none %}
+        <div class="card shadow-sm p-4 border-success">
+            <h3 class="text-center text-success mb-4">Result</h3>
+
+            <div class="text-center">
+                <div class="text-muted small">Answer</div>
+                <div class="fs-2 fw-bold text-dark">
+                    {{ results }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

@@ -80,6 +80,35 @@ def simple_interest():
             
     # Send both pointers back down. One will contain data, the other stays None.
     return render_template('home.html', si_results=si_results, ci_results=ci_results)
+@app.route('/calc',methods=['GET','POST'])
+def calculator():
+    result=None
+    if request.method == 'POST':
+        
+        sign = (request.form.get('sign') or '+')
+        num1 = float(request.form.get('num1') or '0')
+        num2 = float(request.form.get('num2') or '0')
+        
+        cal = Interest()
+        if sign=='+':
+            result=num1+num2
+        elif sign=='-':
+            result=num1-num2
+        elif sign=="*":
+            result=num1*num2
+        elif sign=="/":
+            if num2!=0:
+                result=num1/num2
+            else:
+                result="denominator cant be zero"
+        else:
+            result=num1**num2
+            
+
+
+            
+    # Send both pointers back down. One will contain data, the other stays None.
+    return render_template('calc.html', results=result)
 
 
 @app.route('/about', methods=['GET'])
