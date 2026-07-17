@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row gy-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 border-primary">
+            <h3 class="mb-3">Simple Interest</h3>
+            <form action="/loan" method="POST">
+                <input type="hidden" name="interest_type" value="simple">
+                <div class="mb-3">
+                    <label class="form-label">Principal Amount (₹)</label>
+                    <input type="number" step="0.01" name="loan" class="form-control" required placeholder="Enter principal amount">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Annual Interest Rate (%)</label>
+                    <input type="number" step="0.01" name="annual_rate" class="form-control" required placeholder="Enter annual rate">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Time Period (Years)</label>
+                    <input type="number" step="0.1" name="years" class="form-control" required placeholder="Enter duration in years">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate Simple Interest</button>
+            </form>
+
+            {% if simple_result %}
+            <div class="mt-4 p-3 bg-light rounded">
+                <h5>Result</h5>
+                <p>Principal: ₹{{ simple_result.principal }}</p>
+                <p>Rate: {{ simple_result.annual_rate }}% per year</p>
+                <p>Time: {{ simple_result.years }} years</p>
+                <p class="fw-bold">Total Amount: ₹{{ simple_result.total_amount }}</p>
+                <p class="text-success">Interest Earned: ₹{{ simple_result.interest_earned }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 border-success">
+            <h3 class="mb-3">Compound Interest</h3>
+            <form action="/loan" method="POST">
+                <input type="hidden" name="interest_type" value="compound">
+                <div class="mb-3">
+                    <label class="form-label">Principal Amount (₹)</label>
+                    <input type="number" step="0.01" name="loan" class="form-control" required placeholder="Enter principal amount">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Annual Interest Rate (%)</label>
+                    <input type="number" step="0.01" name="annual_rate" class="form-control" required placeholder="Enter annual rate">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Time Period (Years)</label>
+                    <input type="number" step="0.1" name="years" class="form-control" required placeholder="Enter duration in years">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Compounding Frequency</label>
+                    <select name="compounds_per_year" class="form-select" required>
+                        <option value="1">Annual</option>
+                        <option value="4">Quarterly</option>
+                        <option value="12" selected>Monthly</option>
+                        <option value="365">Daily</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Calculate Compound Interest</button>
+            </form>
+
+            {% if compound_result %}
+            <div class="mt-4 p-3 bg-light rounded">
+                <h5>Result</h5>
+                <p>Principal: ₹{{ compound_result.principal }}</p>
+                <p>Rate: {{ compound_result.annual_rate }}% per year</p>
+                <p>Time: {{ compound_result.years }} years</p>
+                <p>Compounds per year: {{ compound_result.compounds_per_year }}</p>
+                <p class="fw-bold">Total Amount: ₹{{ compound_result.total_amount }}</p>
+                <p class="text-success">Interest Earned: ₹{{ compound_result.interest_earned }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

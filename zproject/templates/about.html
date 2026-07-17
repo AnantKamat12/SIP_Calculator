@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card shadow-sm p-4 border-success">
+        <h1>About</h1>
+        <p>This is the about page for your SIP calculator app.</p>
+        <p>View the source code on GitHub:
+            <a href="https://github.com/AnantKamat12/SIP_Calculator" target="_blank" rel="noopener noreferrer">
+                GITHUB
+            </a>
+        </p>
+    </div>
+    <div class="card shadow-sm p-4 border-success">
+        <h2>Project details</h2>
+        <p>This Flask app is a SIP calculator for estimating long-term investment growth. It computes total invested amount, expected wealth gain, and projected portfolio value based on monthly deposits, annual return rate, investment duration, and yearly increment.</p>
+        <p>The app uses Bootstrap for responsive styling and inherits a common navbar from <code>base.html</code> so the navigation stays consistent across pages.</p>
+    </div>
+{% endblock %}
