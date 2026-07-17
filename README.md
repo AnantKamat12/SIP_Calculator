@@ -24,6 +24,8 @@ The application serves as a comprehensive interest and wealth growth calculator 
 
 4. **Informational Route (`/about`)**
    * A clean text layout introducing the project parameters and providing a direct link back to the source repository.
+5. **CALCULATOR Route (`/about`)**
+   * A simple calculater page
 
 ---
 
