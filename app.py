@@ -1,25 +1,33 @@
-from flask import Flask
+from flask import Flask, render_template, request
+from Interest import Interest  # Imports your math class
+
 app = Flask(__name__)
 
-##flask app routing
+@app.route('/', methods=['GET', 'POST'])
+def render():
+    results = None
+    if request.method == 'POST':
+        # 1. Capture the inputs from the HTML form
+        monthly_deposit = float(request.form.get('monthly_deposit'))
+        annual_rate = float(request.form.get('annual_rate'))
+        years = float(request.form.get('years'))
+        inc=float(request.form.get('inc'))
+        
+        # 2. Run the math from your Interest class
+        calc = Interest()
+        results = calc.sip(
+            monthly_deposit=monthly_deposit, 
+            annual_rate=annual_rate, 
+            years=years,
+            annual_increment_percent=inc
+        )
+        
+    # 3. Send the results data back to the webpage layout
+    return render_template('new.html', results=results)
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html')
 
-def welcome():
-    return "<h1>Hello, World!</h1>"
-
-@app.route("/index", methods=['GET', 'POST'])
-
-def index():
-    return "<h1>Welcome to the Index Page!</h1>"
-#variable rules
-
-@app.route("/anant/<score>",methods=['GET', 'POST'])
-
-def anant(score:int):
-    return f"<h3>Welcome ANANT! Your score is {score}</h3>"
-@app.route("/form",methods=['GET', 'POST'])
-
-
-if __name__=='__main__':
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, port=8000)
