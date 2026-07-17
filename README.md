@@ -1,48 +1,95 @@
-# WealthCalc - Flask & Bootstrap Financial Calculator Suite
-
-This is an experimental, minimum viable web application built to explore full-stack development using **Flask** for backend logic and **Bootstrap 5** for a responsive, modern frontend user interface. 
-
-The goal of this project was to connect interactive HTML forms with mathematical Python algorithms in the backend, learning how data flows between the user interface and server routines using GET and POST methods.
-
 ---
 
-## 🚀 Key Features
+# ⚙️ How to Run the Project
 
-The application serves as a comprehensive interest and wealth growth calculator suite, split across distinct interactive views:
+## 1. Clone the Repository
 
-1. **Simple & Compound Interest Studio (`/home`)**
-   * **Simple Interest Calculator:** Computes basic growth metrics over a fixed tenure using standard interest calculations.
-   * **Compound Interest Calculator:** Computes growth using recurring monthly compound interest periods.
-   * *Both calculators are nested side-by-side using Bootstrap grids and track calculations independently utilizing distinct state flags.*
+```bash
+git clone https://github.com/AnantKamat12/SIP_Calculator.git
+cd SIP_Calculator
+```
 
-2. **SIP Growth Calculator (`/`)**
-   * Calculates Systematic Investment Plan (SIP) returns with a compounding growth engine.
-   * Supports an advanced **Yearly Increment (%)** features to simulate annual step-up amounts in your monthly contributions.
+## 2. Create a Virtual Environment (Recommended)
 
-3. **Loan Maturity Calculator (`/loan`)**
-   * Computes overall asset maturity frameworks and monitors cumulative interest charges generated over the loan's lifecycle.
+### Windows
 
-4. **Informational Route (`/about`)**
-   * A clean text layout introducing the project parameters and providing a direct link back to the source repository.
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
----
+### Linux / macOS
 
-## 📁 Project Architecture & File Flow
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-The application follows the strict, structured directory environment required by Flask:
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## 4. Run the Flask Application
+
+```bash
+python app.py
+```
+
+If everything starts successfully, Flask will display output similar to:
 
 ```text
-zproject/
-│
-├── app.py                 # Core routing traffic director & form data extraction
-├── Interest.py           # Pure Python math engine housing the calculation classes
-├── requirements.txt       # Project dependencies (Flask)
-├── templates/             # Jinja2 template files
-│   ├── base.html          # Master structural shell layout (Navbar, CSS/JS links)
-│   ├── home.html          # Simple & Compound interest dashboard view
-│   ├── new.html           # SIP calculator interface
-│   ├── loan.html          # Loan breakdown display
-│   └── about.html         # Project details page
-└── static/                # Local static folders for asset styling overrides
-    ├── css/style.css (not used) only bootstrap css was used
-    └── js/main.js  (not used)  only bootstrap jss was used
+* Running on http://127.0.0.1:5000/
+```
+
+Open your browser and visit:
+
+```
+http://127.0.0.1:5000/
+```
+
+---
+
+# 🌐 Available Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | SIP Growth Calculator |
+| `/home` | Simple & Compound Interest Calculators |
+| `/loan` | Loan Maturity Calculator |
+| `/about` | About the Project |
+
+---
+
+# 🛠️ Tech Stack
+
+- **Backend:** Flask (Python)
+- **Frontend:** HTML5, Bootstrap 5
+- **Templating Engine:** Jinja2
+- **Language:** Python 3
+
+---
+
+# 📦 Requirements
+
+- Python 3.9 or later
+- Flask
+
+Install all dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 📸 Screenshots
+
+You can add screenshots of the SIP Calculator, Interest Calculator, and Loan Calculator here to showcase the application's UI.
+
+---
+
+# 📄 License
+
+This project was created for learning and educational purposes to understand Flask routing, backend integration, mathematical computation, and responsive frontend development.
